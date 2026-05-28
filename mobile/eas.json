@@ -1,0 +1,21 @@
+{
+  "cli": {
+    "version": ">= 7.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "env": { "EXPO_PUBLIC_API_URL": "http://localhost:8000/api/v1" }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "env": { "EXPO_PUBLIC_API_URL": "http://192.168.0.102:8000/api/v1" }
+    },
+    "production": {
+      "env": { "EXPO_PUBLIC_API_URL": "https://api.autoshinestudio.com/api/v1" }
+    }
+  }
+}

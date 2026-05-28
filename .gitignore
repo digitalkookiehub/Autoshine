@@ -1,0 +1,40 @@
+# ── Secrets (NEVER commit) ───────────────────────────────────────────────────
+backend/.env
+mobile/.env
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+backend/uvicorn.log
+
+# ── Node / Expo ───────────────────────────────────────────────────────────────
+mobile/node_modules/
+mobile/.expo/
+mobile/.expo-shared/
+mobile/dist/
+mobile/web-build/
+
+# ── Android build artefacts ───────────────────────────────────────────────────
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/android/build/
+mobile/android/local.properties
+mobile/android/.cxx/
+mobile/android/app/.cxx/
+
+# ── iOS ───────────────────────────────────────────────────────────────────────
+mobile/ios/Pods/
+mobile/ios/build/
+
+# ── Misc ─────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+.idea/
+.vscode/
+screenshot/
