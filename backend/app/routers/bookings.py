@@ -130,7 +130,11 @@ def list_my_bookings(
 
 @router.get("/{booking_id}", response_model=BookingResponse)
 def get_booking(booking_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
-    booking = db.query(Booking).filter(Booking.id == booking_id).first()
+    booking = db.query(Booking).options(
+        joinedload(Booking.service),
+        joinedload(Booking.slot),
+        joinedload(Booking.vehicle),
+    ).filter(Booking.id == booking_id).first()
     if not booking:
         raise NotFoundError("Booking")
     if booking.user_id != current_user.id and current_user.role not in ["admin", "staff"]:
