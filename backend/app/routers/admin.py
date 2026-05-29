@@ -8,6 +8,7 @@ from app.database import get_db
 from app.dependencies import get_current_staff_or_admin, get_current_admin
 from app.models.user import User, UserRole
 from app.models.booking import Booking, BookingStatus, BookingStatusHistory, TimeSlot
+from app.models.membership import LoyaltyTransaction
 from app.models.service import Service
 from app.schemas.booking import UpdateBookingStatusRequest, BookingResponse, GenerateSlotsRequest
 from app.schemas.auth import UserResponse
@@ -111,6 +112,21 @@ def update_booking_status(
         raise ValidationError(f"Cannot transition from {booking.status} to {req.status}")
 
     booking.status = req.status
+
+    if req.status == "completed":
+        POINTS_PER_BOOKING = 50
+        user = db.query(User).filter(User.id == booking.user_id).first()
+        if user:
+            user.loyalty_points = (user.loyalty_points or 0) + POINTS_PER_BOOKING
+            tx = LoyaltyTransaction(
+                user_id=user.id,
+                points=POINTS_PER_BOOKING,
+                type="earned",
+                description="Booking completed",
+                booking_id=booking.id,
+            )
+            db.add(tx)
+
     history = BookingStatusHistory(
         booking_id=booking.id,
         status=req.status,
