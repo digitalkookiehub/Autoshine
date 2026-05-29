@@ -48,6 +48,26 @@ class BookingPhotoResponse(BaseModel):
         from_attributes = True
 
 
+class BookingServiceSummary(BaseModel):
+    id: int
+    name: str
+    duration_minutes: int
+    image_url: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class BookingSlotSummary(BaseModel):
+    id: int
+    date: date
+    start_time: time
+    end_time: time
+
+    class Config:
+        from_attributes = True
+
+
 class BookingResponse(BaseModel):
     id: int
     user_id: int
@@ -64,6 +84,8 @@ class BookingResponse(BaseModel):
     payment_status: str
     created_at: datetime
     updated_at: Optional[datetime]
+    service: Optional[BookingServiceSummary] = None
+    slot: Optional[BookingSlotSummary] = None
 
     class Config:
         from_attributes = True

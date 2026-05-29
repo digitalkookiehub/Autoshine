@@ -30,6 +30,8 @@ class UpdateProfileRequest(BaseModel):
     email: Optional[str] = None
     avatar_url: Optional[str] = None
     expo_push_token: Optional[str] = None
+    address: Optional[str] = None
+    alternate_phone: Optional[str] = None
 
 
 class TokenResponse(BaseModel):
@@ -52,6 +54,8 @@ class UserResponse(BaseModel):
     referral_code: str
     membership_tier: str
     expo_push_token: Optional[str]
+    address: Optional[str]
+    alternate_phone: Optional[str]
     created_at: datetime
 
     class Config:

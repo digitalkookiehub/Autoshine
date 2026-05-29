@@ -39,7 +39,7 @@ export const authService = {
   },
 
   async updateProfile(
-    updates: { full_name?: string; email?: string; expo_push_token?: string }
+    updates: { full_name?: string; email?: string; expo_push_token?: string; address?: string; alternate_phone?: string }
   ): Promise<User> {
     const { data } = await api.put<User>('/auth/me', updates);
     return data;

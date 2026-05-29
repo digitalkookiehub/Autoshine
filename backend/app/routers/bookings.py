@@ -119,7 +119,10 @@ def list_my_bookings(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ):
-    q = db.query(Booking).filter(Booking.user_id == current_user.id)
+    q = db.query(Booking).options(
+        joinedload(Booking.service),
+        joinedload(Booking.slot),
+    ).filter(Booking.user_id == current_user.id)
     if status:
         q = q.filter(Booking.status == status)
     return q.order_by(Booking.created_at.desc()).offset(skip).limit(limit).all()

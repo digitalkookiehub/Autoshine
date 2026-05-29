@@ -15,6 +15,8 @@ export interface User {
   referral_code: string;
   membership_tier: MembershipTier;
   expo_push_token: string | null;
+  address: string | null;
+  alternate_phone: string | null;
   created_at: string;
 }
 

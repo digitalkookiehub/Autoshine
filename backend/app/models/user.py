@@ -37,6 +37,8 @@ class User(Base, TimestampMixin):
     )
     referred_by_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     membership_tier = Column(Enum(MembershipTier), default=MembershipTier.none)
+    address = Column(String(500), nullable=True)
+    alternate_phone = Column(String(20), nullable=True)
 
     vehicles = relationship("UserVehicle", back_populates="user", cascade="all, delete-orphan")
     bookings = relationship("Booking", back_populates="user", foreign_keys="Booking.user_id")

@@ -165,6 +165,10 @@ def update_me(
         current_user.avatar_url = req.avatar_url
     if req.expo_push_token is not None:
         current_user.expo_push_token = req.expo_push_token
+    if req.address is not None:
+        current_user.address = req.address
+    if req.alternate_phone is not None:
+        current_user.alternate_phone = req.alternate_phone
     db.commit()
     db.refresh(current_user)
     return current_user
