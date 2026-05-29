@@ -1,6 +1,8 @@
 # ── Secrets (NEVER commit) ───────────────────────────────────────────────────
 backend/.env
 mobile/.env
+mobile/android/app/autoshine.keystore
+mobile/android/app/*.keystore
 
 # ── Python ───────────────────────────────────────────────────────────────────
 __pycache__/
